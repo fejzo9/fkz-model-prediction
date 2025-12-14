@@ -1,0 +1,28 @@
+# Core scientific stack
+numpy>=1.23
+pandas>=1.5
+scipy>=1.9
+
+# Machine Learning
+scikit-learn>=1.2
+statsmodels>=0.13
+
+# Deep Learning (CNNs)
+torch>=2.0
+torchvision>=0.15
+torchaudio>=2.0
+
+# Visualization
+matplotlib>=3.7
+seaborn>=0.12
+
+# Jupyter / Notebooks
+jupyter>=1.0
+ipykernel>=6.0
+
+# Utilities
+tqdm>=4.65
+joblib>=1.2
+
+# Data handling
+pyyaml>=6.0
