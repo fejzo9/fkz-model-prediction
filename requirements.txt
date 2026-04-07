@@ -26,3 +26,4 @@ joblib>=1.2
 
 # Data handling
 pyyaml>=6.0
+openpyxl>=3.1
