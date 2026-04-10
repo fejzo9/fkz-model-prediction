@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from .features import build_base_features
-from .io import read_matches_excel, write_csv
+from .io import read_matches_table, write_csv
 from .validation import validate_match_data
 
 
@@ -21,7 +21,7 @@ def run_pipeline(
     features_output_path: str | Path,
     report_output_path: str | Path,
 ) -> PipelineOutputs:
-    raw_df = read_matches_excel(input_path)
+    raw_df = read_matches_table(input_path)
     validation_report = validate_match_data(raw_df)
 
     processed_df = raw_df.copy()

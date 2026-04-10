@@ -5,9 +5,18 @@ from pathlib import Path
 import pandas as pd
 
 
-def read_matches_excel(path: str | Path, sheet_name: str = 0) -> pd.DataFrame:
-    """Read the raw Excel workbook into a DataFrame."""
-    return pd.read_excel(path, sheet_name=sheet_name)
+def read_matches_table(path: str | Path, sheet_name: str = 0) -> pd.DataFrame:
+    """Read the raw match table from either CSV or Excel."""
+    input_path = Path(path)
+    suffix = input_path.suffix.lower()
+
+    if suffix == ".csv":
+        return pd.read_csv(input_path)
+
+    if suffix in {".xlsx", ".xls"}:
+        return pd.read_excel(input_path, sheet_name=sheet_name)
+
+    raise ValueError(f"Unsupported input format: {input_path.suffix}")
 
 
 def ensure_parent_dir(path: str | Path) -> Path:

@@ -17,8 +17,8 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the FKZ data ingestion pipeline.")
     parser.add_argument(
         "--input",
-        default=str(PROJECT_ROOT / "data" / "raw" / "results_2024_2025.xlsx"),
-        help="Path to the raw Excel workbook.",
+        default=str(PROJECT_ROOT / "data" / "raw" / "matches_source.csv"),
+        help="Path to the raw CSV or Excel match table.",
     )
     parser.add_argument(
         "--processed-output",
