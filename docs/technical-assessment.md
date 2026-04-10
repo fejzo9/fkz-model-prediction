@@ -4,6 +4,12 @@
 
 This repository currently represents a solid project idea with an early dataset draft, but it is not yet a usable machine learning project in its present form.
 
+Historical note:
+
+- this assessment reflects the repository state on `2026-04-06`
+- newer additions such as the canonical CSV workflow and the first NFSBiH scraper were added afterwards
+- see `docs/status-report-2026-04-10.md` for the updated project state
+
 The strongest parts are:
 
 - a clear domain focus: FK Zeljeznicar and WWIN Liga BiH
