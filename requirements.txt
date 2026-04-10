@@ -23,6 +23,8 @@ ipykernel>=6.0
 # Utilities
 tqdm>=4.65
 joblib>=1.2
+requests>=2.31
+beautifulsoup4>=4.12
 
 # Data handling
 pyyaml>=6.0
