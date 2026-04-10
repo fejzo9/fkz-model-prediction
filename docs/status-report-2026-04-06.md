@@ -1,5 +1,8 @@
 # Status Report
 
+> Historical note: this report describes the repository state on `2026-04-06`.
+> For the updated state after the canonical CSV and scraper work, see `docs/status-report-2026-04-10.md`.
+
 ## Date
 
 2026-04-06
