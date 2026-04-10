@@ -58,7 +58,15 @@ CNNs are **not used on images**, but on **structured numerical data transformed 
 
 ## 📊 Dataset Construction
 
-The dataset will be **built manually and incrementally**.
+The dataset is being built through a **canonical CSV match table** plus a **URL-driven scraper** for official NFSBiH sources.
+
+Current implementation:
+- canonical raw dataset: `data/raw/matches_source.csv`
+- schema definition: `docs/dataset-spec.md`
+- scraper: `scripts/scrape_nfsbih.py`
+- scraping workflow: `docs/scraping.md`
+
+The CSV is the source of truth. Automated scraping writes into that file, after which rows can be reviewed and completed if some fields are still missing.
 
 ### Data Scope
 - Last **5 seasons** of matches
@@ -95,6 +103,7 @@ The dataset will be **built manually and incrementally**.
   - statsmodels
   - PyTorch / TensorFlow (for CNNs)
   - Matplotlib / Seaborn
+  - Requests / BeautifulSoup (for official-source scraping)
 
 > All experiments are developed in **Google Colab**, then **exported and committed** to this repository as notebooks.
 
@@ -107,6 +116,7 @@ The dataset will be **built manually and incrementally**.
 │   ├── raw/
 │   ├── processed/
 │   └── features/
+├── docs/
 ├── notebooks/
 │   ├── 01_data_collection.ipynb
 │   ├── 02_feature_engineering.ipynb
@@ -119,6 +129,27 @@ The dataset will be **built manually and incrementally**.
 ├── README.md
 └── requirements.txt
 ```
+---
+
+## 🔄 Data Workflow
+
+Current data flow:
+
+1. Scrape visible official NFSBiH team results into `data/raw/matches_source.csv`
+2. Review and complete any missing values in the canonical CSV
+3. Run `python scripts/run_pipeline.py`
+4. Produce cleaned outputs in `data/processed` and `data/features`
+
+Current limitation:
+- the first scraper version captures the currently visible round on an NFSBiH team page
+- it does not yet crawl every historical round of every season automatically from one URL
+- full historical automation is the next planned scraping upgrade
+
+Related docs:
+- `docs/dataset-spec.md`
+- `docs/scraping.md`
+- `docs/workflow.md`
+
 ---
 
 ## 📈 Evaluation Strategy
@@ -156,7 +187,9 @@ Expected realistic performance:
 Current stage:
 - Repository setup
 - Dataset design
-- Data collection for FK Željezničar (last 5 seasons)
+- Canonical CSV dataset established
+- Initial NFSBiH scraper implemented
+- Historical data collection in progress
 
 ---
 
