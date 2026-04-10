@@ -219,7 +219,10 @@ def parse_team_page(
             continue
 
         if len(cells) == 1 and cells[0].has_attr("colspan"):
-            current_date = parse_match_datetime(cells[0].get_text(" ", strip=True))
+            date_text = clean_text(cells[0].get_text(" ", strip=True))
+            if not date_text:
+                continue
+            current_date = parse_match_datetime(date_text)
             continue
 
         if len(cells) < 5 or current_date is None:
@@ -282,6 +285,9 @@ def extract_results_round(soup: BeautifulSoup) -> int:
     for tab in tabs:
         text = clean_text(tab.get_text(" ", strip=True))
         match = re.search(r"Results round\s+(\d+)", text, re.IGNORECASE)
+        if match:
+            return int(match.group(1))
+        match = re.search(r"Rezultati\s+(\d+)\.\s*kola", text, re.IGNORECASE)
         if match:
             return int(match.group(1))
     raise ValueError("Could not determine the active results round.")

@@ -53,13 +53,37 @@ It currently:
 - reads visible standings
 - merges rows into the canonical CSV by `match_id`
 
-### 4. Scraping documentation
+### 4. First end-to-end scraper run
+
+The scraper was executed successfully against the URL stored in:
+
+- `data/raw/source_urls.txt`
+
+Execution result:
+
+- 1 URL fetched
+- 1 match scraped
+- 1 row written into `data/raw/matches_source.csv`
+
+The first successfully collected record contains:
+
+- season `2025/2026`
+- competition `WWIN LIGA BIH 25/26`
+- round `27`
+- date `2026-04-04`
+- match `FK Zeljeznicar` vs `FK SARAJEVO`
+- score `0:0`
+- result `D`
+- `points_total_after=30`
+- `table_position_after=6`
+
+### 5. Scraping documentation
 
 The scraping workflow was documented in:
 
 - `docs/scraping.md`
 
-### 5. Pipeline input flexibility
+### 6. Pipeline input flexibility
 
 The ingestion layer now supports:
 
@@ -70,6 +94,21 @@ The default pipeline input was switched to:
 
 - `data/raw/matches_source.csv`
 
+### 7. Pipeline verification after scraping
+
+After the scraper wrote the first row, the pipeline was also run successfully.
+
+Generated outputs:
+
+- `data/processed/matches_processed.csv`
+- `data/features/matches_features.csv`
+- `results/validation_report.md`
+
+Current validation status:
+
+- no errors
+- no warnings
+
 ## Current State
 
 What is ready:
@@ -79,6 +118,7 @@ What is ready:
 - canonical raw CSV
 - first validation and feature pipeline
 - first official-source scraper
+- verified end-to-end scrape of one official NFSBiH match row
 
 What is not yet ready:
 
